@@ -1,4 +1,85 @@
 ﻿@page
-@model lab2_signmeup_bluntcd.Pages.signupModel
+@model SignupModel
 @{
+    ViewData["Title"] = "Signup";
 }
+<div class="text-center">
+    <h1 class="display-4">Sign up for the Event!</h1>
+    <p class="lead">Reserve your spot for the ultimate Pep Rally & Bonfire experience!</p>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3>Event Reservation</h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <!-- We'll add form fields here step by step -->
+
+                    <div class="form-group mb-3">
+                        <label asp-for="GuestName" class="form-label">Full Name:</label>
+                        <input asp-for="GuestName" class="form-control" />
+                        <span asp-validation-for="GuestName" class="text-danger"></span>
+                    </div>
+                    <!-- Email Field -->
+                    <div class="form-group mb-3">
+                        <label asp-for="Email" class="form-label">Email Address:</label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <!-- Year Field -->
+                    <div class="form-group mb-3">
+                        <label asp-for="Year" class="form-label">Year:</label>
+                        <select asp-for="Year" class="form-control">
+                            <option value="">Select school year</option>
+                            <option value="Freshman">Freshman</option>
+                            <option value="Sophmore">Sophmore</option>
+                            <option value="Junior">Junior</option>
+                            <option value="Senior">Senior</option>
+                        </select>
+                        <span asp-validation-for="Year" class="text-danger"></span>
+                    </div>
+                    <!-- Dropdown for RSVP selection -->
+                    <div class="form-group mb-3">
+                        <label asp-for="AttendingOption" class="form-label">Attendance:</label>
+                        <select asp-for="AttendingOption" class="form-control">
+                            <option value="">Select attendance option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <span asp-validation-for="AttendingOption" class="text-danger"></span>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <button type="submit" class="btn btn-primary">Submit Reservation</button>
+                        <button type="button" class="btn btn-secondary" onclick="populateForm()">Populate Test Data</button>
+                        <button type="button" class="btn btn-outline-secondary" onclick="clearForm()">Clear Form</button>
+                    </div>
+                </form>
+                @if (ViewData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success mt-4">
+                        <h4>Reservation Confirmed!</h4>
+                        <p>@ViewData["SuccessMessage"]</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function populateForm() {
+        document.querySelector('[name="GuestName"]').value = 'James Madison';
+        document.querySelector('[name="Email"]').value = 'jmadison@dukes.jmu.edu';
+        document.querySelector('[name="Year"]').value = 'Freshman';
+        document.querySelector('[name="AttendingOption"]').value = 'Yes';
+    }
+
+    function clearForm() {
+        document.querySelector('[name="GuestName"]').value = '';
+        document.querySelector('[name="Email"]').value = '';
+        document.querySelector('[name="Year"]').value = '';
+        document.querySelector('[name="AttendingOption"]').value = '';
+    }
+</script>
