@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 
-namespace lab2_signmeup_bluntcd.Pages
+namespace lab2_signup_bluntcd.Pages
 {
     public class SignupModel : PageModel
     {
